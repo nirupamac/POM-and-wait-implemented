@@ -1,13 +1,12 @@
-﻿using May2023.Utilities;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 
 
 namespace May2023.Pages
 {
     public class TMPage
-    {                                                                               
-    
+    {
+
         public void CreateTime(IWebDriver driver)
         {
             IWebElement createNewButton = driver.FindElement(By.XPath("/html/body/div[4]/p/a"));
@@ -40,15 +39,29 @@ namespace May2023.Pages
             Thread.Sleep(1000);
 
             //find the last record on list page 
-            IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement newTypeCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[2]"));
-            IWebElement newDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
-            IWebElement newPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
+            //IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            //IWebElement newTypeCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[2]"));
+            //IWebElement newDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+            //IWebElement newPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
 
-            Assert.That(newCode.Text == "May2023", "Actual Code and expected code do not match.");
-            Assert.That(newTypeCode.Text == "T", "Actual TypeCode and expected typecode do not match.");
-            Assert.That(newDescription.Text == "May2023", "Actual Description and expected description do not match.");
-            Assert.That(newPrice.Text == "$12.00", "Actual Price and expected price do not match.");
+
+
+        }
+        public string GetCode(IWebDriver driver)
+        {
+            IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            return newCode.Text;
+        }
+        public string GetDescription(IWebDriver driver)
+        {
+            IWebElement newDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+            return newDescription.Text;
+
+        }
+        public string GetPrice(IWebDriver driver)
+        {
+            IWebElement newPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
+            return newPrice.Text;
 
         }
 
@@ -72,7 +85,7 @@ namespace May2023.Pages
             {
                 Assert.Fail("New record created hasn't been found.");
             }
-                        
+
             IWebElement codeTextbox = driver.FindElement(By.Id("Code"));
             codeTextbox.Clear();
             codeTextbox.SendKeys("June2023");
@@ -99,7 +112,7 @@ namespace May2023.Pages
             Thread.Sleep(1000);
             IWebElement deleteRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
             deleteRecord.Click();
-            
+
 
             // To Click OK in altert window
             driver.SwitchTo().Alert().Accept();

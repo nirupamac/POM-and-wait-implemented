@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "544e77b5-b2fa-4931-8627-fd4d81fc27a2",
+		"name": "Dummy API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27563914"
+	},
+	"item": [
+		{
+			"name": "Get all users data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Id check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].id).to.eql(1);\r",
+							"    pm.expect(jsonData.data[1].id).to.eql(2);\r",
+							"    pm.expect(jsonData.data[2].id).to.eql(3);\r",
+							"    pm.expect(jsonData.data[3].id).to.eql(4);\r",
+							"    pm.expect(jsonData.data[4].id).to.eql(5);\r",
+							"    pm.expect(jsonData.data[5].id).to.eql(6);\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/users",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a single user data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/users/1",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -25,4 +25,6 @@
     <Folder Include="StepDefinitions\" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
 </Project>
